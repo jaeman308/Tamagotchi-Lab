@@ -36,7 +36,26 @@ const resetBtnEl = document.querySelector('#restart')
 // //     gameMessageEl,
 // //     resetBtnEl
 // // })
-// /*-------------------------------- Functions --------------------------------*/
+//*-------------------------------- Functions --------------------------------*
+// upon loading our app.js script 
+init () // the function call
+
+//function declaration 
+
+ function init () {
+console.log('init working')
+gameOver = false; 
+timer = setInterval(runGame, 2000)
+render ()
+
+}
+
+function runGame () {
+    console.log("game running")
+}
+function render (){
+ console.log("conent rendering")
+}
 
 
 
