@@ -5,7 +5,7 @@
 /*---------------------------- Variables (state) ----------------------------*/
 // Our global state object 
 let state = {
-    boredem: 0, 
+    boredom: 0, 
     hunger: 0, 
     sleepiness: 0,
 };
@@ -51,13 +51,24 @@ render ()
 }
 
 function runGame () {
-    console.log("game running")
+    // console.log("game running")
+    updateSates()
 }
 function render (){
  console.log("conent rendering")
 }
+function updateSates () {
+    // we need to target the global state properites
+    console.log(state)
+    state.boredom += randomInt()
+    state.hunger += randomInt()
+    state.sleepiness += randomInt()
 
+}
 
+function randomInt() {
+    return Math.floor(Math.random() * 4)
+}
 
 /*----------------------------- Event Listeners -----------------------------*/
 
