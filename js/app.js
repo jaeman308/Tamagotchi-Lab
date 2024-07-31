@@ -42,28 +42,36 @@ init () // the function call
 
 //function declaration 
 
- function init () {
+ function init() {
 console.log('init working')
+resetBtnEl.classList.add('hidden')
+gameMessageEl.classList.add('hidden')
+state.boredom = 0;
+state.hunger= 0;
+state.sleepiness= 0;
 gameOver = false; 
 timer = setInterval(runGame, 2000)
-render ()
+render()
 
 }
 
-function runGame () {
-    // console.log("game running")
+function runGame() {
+    console.log("game running")
     updateSates()
+    checkGameOver()
+    render()
 }
-function render (){
+
+function render() {
  console.log("conent rendering")
  //dipsaly the state properties to the dom 
  boredomStatEl.textContent = state.boredom
  hungerStatEl.textContent = state.hunger
  sleepinessStatEl.textContent = state.sleepiness
 
- if (gameOVer) {
+ if (gameOver) {
     // display the hidden elements 
-    
+
     resetBtnEl.classList.remove('hidden')
     gameMessageEl.classList.remove('hidden')
 
@@ -72,7 +80,7 @@ function render (){
  }
 
 }
-function updateSates () {
+function updateSates() {
     // we need to target the global state properites
     console.log(state)
     state.boredom += randomInt()
@@ -82,20 +90,37 @@ function updateSates () {
 }
 
 
-function gameOVer () {
+function checkGameOver() {
     if (
         state.boredom > 9 ||
         state.hunger > 9 ||
         state.sleepiness > 9 
     
     ) {
-        gameOVer = true 
+        gameOver = true 
     }
 }
+
+function playBtnClick() {
+    state.boredom = 0
+    render()
+}
+function feedBtnClick() {
+    state.hunger = 0;
+    render()
+}
+ function sleepBtnClick() {
+    state.sleepiness = 0
+    render ()
+ }
+
 function randomInt() {
     return Math.floor(Math.random() * 4)
 }
 
+
 /*----------------------------- Event Listeners -----------------------------*/
-
-
+playBtnEl.addEventListener ('click', playBtnClick)
+feedBtnEl.addEventListener ('click', feedBtnClick)
+sleepBtnEl.addEventListener('click', sleepBtnClick)
+resetBtnEl.addEventListener('click', init)
