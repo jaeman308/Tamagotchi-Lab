@@ -56,6 +56,21 @@ function runGame () {
 }
 function render (){
  console.log("conent rendering")
+ //dipsaly the state properties to the dom 
+ boredomStatEl.textContent = state.boredom
+ hungerStatEl.textContent = state.hunger
+ sleepinessStatEl.textContent = state.sleepiness
+
+ if (gameOVer) {
+    // display the hidden elements 
+    
+    resetBtnEl.classList.remove('hidden')
+    gameMessageEl.classList.remove('hidden')
+
+    // clear the timer 
+    clearInterval(timer)
+ }
+
 }
 function updateSates () {
     // we need to target the global state properites
@@ -66,6 +81,17 @@ function updateSates () {
 
 }
 
+
+function gameOVer () {
+    if (
+        state.boredom > 9 ||
+        state.hunger > 9 ||
+        state.sleepiness > 9 
+    
+    ) {
+        gameOVer = true 
+    }
+}
 function randomInt() {
     return Math.floor(Math.random() * 4)
 }
